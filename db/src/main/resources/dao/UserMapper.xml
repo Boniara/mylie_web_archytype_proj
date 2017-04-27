@@ -4,10 +4,13 @@
 <mapper namespace="com.bavuta.db.dao.UserDAO">
 
     <insert id="createUser" keyProperty="id" keyColumn="ID" useGeneratedKeys="true">
-        INSERT INTO bavuta_example.USERS (FIRST_NAME, LAST_NAME, EMAIL) VALUES (
+        INSERT INTO bavuta_example.USERS (FIRST_NAME, LAST_NAME, EMAIL, USERNAME, PASSWORD, ROLE_ID) VALUES (
           #{firstName},
           #{lastName},
-          #{email}
+          #{email},
+          #{username},
+          #{password},
+          #{role.id}
         )
     </insert>
 
@@ -17,15 +20,35 @@
         U.FIRST_NAME AS USER_FIRST_NAME,
         U.LAST_NAME AS USER_LAST_NAME,
         U.EMAIL AS USER_EMAIL,
+        U.USERNAME AS USER_USERNAME,
+        U.PASSWORD AS USER_PASSWORD,
+        R.ID AS ROLE_ID,
+        R.ROLE AS ROLE_ROLE,
+        R.CREATED_AT AS ROLE_CREATED_AT,
+        R.MODIFIED_AT AS ROLE_MODIFIED_AT,
         U.CREATED_AT AS USER_CREATED_AT,
         U.MODIFIED_AT AS USER_MODIFIED_AT
         FROM
         bavuta_example.USERS U
+        INNER JOIN
+        bavuta_example.ROLES R
+        ON
+        U.ROLE_ID = R.ID
     </sql>
 
     <select id="getUserById" resultMap="UserResultMap">
         <include refid="getList"/>
         WHERE U.ID = #{id}
+    </select>
+
+    <select id="getUserByEmail" resultMap="UserResultMap">
+        <include refid="getList"/>
+        WHERE U.EMAIL = #{email}
+    </select>
+
+    <select id="getUserByUsername" resultMap="UserResultMap">
+        <include refid="getList"/>
+        WHERE U.USERNAME = #{username}
     </select>
 
     <select id="getUserList" resultMap="UserResultMap">
@@ -38,7 +61,10 @@
         SET
         FIRST_NAME = #{firstName},
         LAST_NAME = #{lastName},
-        EMAIL = #{email}
+        EMAIL = #{email},
+        USERNAME = #{username},
+        PASSWORD = #{password},
+        ROLE_ID = #{role.id}
         WHERE
         ID = #{id}
     </update>
@@ -54,8 +80,12 @@
         <result property="firstName" column="USER_FIRST_NAME"/>
         <result property="lastName" column="USER_LAST_NAME"/>
         <result property="email" column="USER_EMAIL"/>
+        <result property="username" column="USER_USERNAME"/>
+        <result property="password" column="USER_PASSWORD"/>
         <result property="createdAt" column="USER_CREATED_AT"/>
         <result property="modifiedAt" column="USER_MODIFIED_AT"/>
+        <association property="role" javaType="com.bavuta.model.Role"
+                     resultMap="com.bavuta.db.dao.RoleDAO.RoleResultMap"/>
     </resultMap>
 
 </mapper>

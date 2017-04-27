@@ -30,6 +30,12 @@ public class UserService extends AbstractService {
     }
 
     @Transactional(rollbackFor = Exception.class)
+    public User getUserByUsername(String username) {
+        User user = userDAO.getUserByUsername(username);
+        return user;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
     public List<User> getUserList() {
         List<User> userList = userDAO.getUserList();
         return userList;

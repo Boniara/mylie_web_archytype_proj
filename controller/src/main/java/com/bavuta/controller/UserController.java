@@ -33,6 +33,12 @@ public class UserController extends AbstractController {
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody User getUserByUsername(@RequestParam(value = "username", required = false) String username) {
+        return userService.getUserByUsername(username);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody List<User> getUserList() {
         return userService.getUserList();
