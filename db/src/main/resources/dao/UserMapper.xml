@@ -49,7 +49,7 @@
         ID = #{id}
     </delete>
 
-    <resultMap id="UserResultMap" type="com.bavuta.model.models.User" autoMapping="false">
+    <resultMap id="UserResultMap" type="com.bavuta.model.User" autoMapping="false">
         <id property="id" column="USER_ID"/>
         <result property="firstName" column="USER_FIRST_NAME"/>
         <result property="lastName" column="USER_LAST_NAME"/>

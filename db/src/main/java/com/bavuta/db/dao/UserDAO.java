@@ -1,6 +1,6 @@
 package com.bavuta.db.dao;
 
-import com.bavuta.model.models.User;
+import com.bavuta.model.User;
 import java.util.List;
 
 /**

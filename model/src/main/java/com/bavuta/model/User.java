@@ -1,4 +1,4 @@
-package com.bavuta.model.models;
+package com.bavuta.model;
 
 import com.bavuta.model.AbstractModel;
 
