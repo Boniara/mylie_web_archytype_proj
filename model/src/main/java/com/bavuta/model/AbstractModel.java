@@ -1,13 +1,15 @@
 package com.bavuta.model;
 
+import java.util.Date;
+
 /**
  * Created by bogdan on 4/27/2017.
  */
 public abstract class AbstractModel {
 
     private long id;
-    private long modifiedAt;
-    private long createdAt;
+    private Date modifiedAt;
+    private Date createdAt;
 
     public AbstractModel() {
     }
@@ -20,19 +22,19 @@ public abstract class AbstractModel {
         this.id = id;
     }
 
-    public long getModifiedAt() {
+    public Date getModifiedAt() {
         return modifiedAt;
     }
 
-    public void setModifiedAt(long modifiedAt) {
+    public void setModifiedAt(Date modifiedAt) {
         this.modifiedAt = modifiedAt;
     }
 
-    public long getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(long createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 }
