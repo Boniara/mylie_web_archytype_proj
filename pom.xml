@@ -104,7 +104,6 @@
                 <version>${spring-security-version}</version>
             </dependency>
 
-
             <!-- TESTNG -->
             <dependency>
                 <groupId>org.testng</groupId>

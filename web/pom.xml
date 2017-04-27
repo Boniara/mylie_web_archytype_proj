@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>web</artifactId>
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
@@ -25,8 +26,12 @@
             <artifactId>spring-context</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.bavuta</groupId>
-            <artifactId>db</artifactId>
+            <artifactId>controller</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
